@@ -24,7 +24,7 @@ def main() -> None:
     application = Application.builder().token(TOKEN).build()
     application.add_handler(CommandHandler("start", commands.start))
     application.add_handler(CommandHandler("help", commands.help))
-    application.add_handler(CommandHandler("glist", commands.glist))
+    application.add_handler(CommandHandler("list", commands.glist))
     application.add_handler(CommandHandler("stat", commands.stat))
     application.add_handler(CommandHandler("set", commands.set_timer))
     application.add_handler(CommandHandler("unset", commands.unset))
