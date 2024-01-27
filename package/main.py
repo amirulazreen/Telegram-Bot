@@ -35,5 +35,3 @@ if __name__ == "__main__":
     asyncio.run(source.load_data())
     print("Bot running...")
     main()
-
-a
