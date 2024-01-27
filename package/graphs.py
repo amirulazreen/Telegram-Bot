@@ -194,7 +194,7 @@ async def graph8(bot=None, update=None, context=None):
 
     plt.title('Number of new blood donors based on age groups')
     plt.xlabel('Number of blood donations')
-    plt.ylabel('Age Group')
+    plt.ylabel('Age group')
 
     buffer = io.BytesIO()
     plt.savefig(buffer, format='png')
