@@ -20,7 +20,8 @@ async def help(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     message = (
         "The following commands are available :\n"
         "/stat - Blood Donations stats\n"
-        "/glist - List of graphs available\n"
+        "/list - List of graphs available\n"
+        "/graph <number> - Display graph\n"
         "/set - Set timer to display graphs\n"
         "/unset - Unset timer of displayed graphs"
     )
@@ -28,15 +29,15 @@ async def help(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
 async def glist(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     message = (
-        "Use the following commands to display graphs:\n"
-        "/graph1 - Blood Donations Trend - Malaysia\n"
-        "/graph2 - Blood Donors Retention - Malaysia\n"
-        "/graph3 - Blood Donations Trend - States\n"
-        "/graph4 - Number Of Blood Donations per Hospital\n"
-        "/graph5 - Correlation Between Accessibility And Number of Blood Donations\n"
-        "/graph6 - Number of Blood Donations Based On Social Groups\n"
-        "/graph7 - Number of Blood Donations Based On Blood Type\n"
-        "/graph8 - Number Of Blood Donations Based On Age Groups"
+        "Use /graph <number> to display graph:\n"
+        "1 - Blood Donations Trend - Malaysia\n"
+        "2 - Blood Donors Retention - Malaysia\n"
+        "3 - Blood Donations Trend - States\n"
+        "4 - Number Of Blood Donations per Hospital\n"
+        "5 - Correlation Between Accessibility And Number of Blood Donations\n"
+        "6 - Number of Blood Donations Based On Social Groups\n"
+        "7 - Number of Blood Donations Based On Blood Type\n"
+        "8 - Number Of Blood Donations Based On Age Groups"
     )
     await update.message.reply_text(message)
 
@@ -49,7 +50,6 @@ async def stat(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     )
 
     await update.message.reply_text(message)
-
 
 async def setup(context: ContextTypes.DEFAULT_TYPE) -> None:
     await source.load_data()
