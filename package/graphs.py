@@ -12,7 +12,7 @@ import source
 """
     graph1 - Blood Donations Trend - Malaysia
     graph2 - Blood Donors Retention - Malaysia
-    graph3 - Blood Donations Trend - State
+    graph3 - Blood Donations Trend - States
     graph4 - Number Of Blood Donations per Hospital
     graph5 - Correlation Between Accessibility And Number of Blood Donation
     graph6 - Number of Blood Donations Based On Social Group
