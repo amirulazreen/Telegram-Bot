@@ -7,6 +7,7 @@ from telegram.ext import Application, Updater, CommandHandler, MessageHandler, C
 import seaborn as sns
 from matplotlib.ticker import FuncFormatter
 from datetime import datetime, timedelta, time
+import numpy as np
 import source
 
 """
@@ -18,6 +19,7 @@ import source
     graph6 - Number of Blood Donations Based On Social Group
     graph7 - Number of Blood Donations Based On Blood Type
     graph8 - Number Of New Blood Donors Based On Age Groups
+    graph9 - Blood Donors Scatterplot
 """
 
 async def graph1(bot=None, update=None, context=None):
@@ -199,8 +201,48 @@ async def graph8(bot=None, update=None, context=None):
     buffer = io.BytesIO()
     plt.savefig(buffer, format='png')
     buffer.seek(0)
-
     plt.close()
+    return buffer
 
+async def graph9(bot=None, update=None, context=None):
+    await bot.send_message(chat_id=update.message.chat_id, text="Loading...")
+
+    two_years_ago = pd.Timestamp.now() - pd.Timedelta(days=365 * 2)
+    three_months_ago = pd.Timestamp.now() - pd.Timedelta(days=30 * 3)
+
+    conditions = [
+        (source.visit_counts['min'] >= three_months_ago) & (source.visit_counts['max'] >= three_months_ago) & (source.visit_counts['count'] == 1),
+        (source.visit_counts['min'] <= two_years_ago) & (source.visit_counts['max'] >= two_years_ago),
+        (source.visit_counts['min'] <= three_months_ago) & (source.visit_counts['max'] >= two_years_ago) & (source.visit_counts['count'] == 1),
+        (source.visit_counts['min'] <= two_years_ago) & (source.visit_counts['max'] <= two_years_ago)
+    ]
+
+    categories = ['new donor', 'old active donor', 'irregular donor', 'lapsed donor']
+
+    source.visit_counts['category'] = np.select(conditions, categories, default='regular donor')
+
+    category_colors = {
+        'new donor': 'aqua',
+        'old active donor': 'darkgreen',
+        'irregular donor': 'orange',
+        'lapsed donor': 'midnightblue',
+        'regular donor': 'limegreen'
+    }
+
+    plt.figure(figsize=(10, 6))
+    for category, color in category_colors.items():
+        category_data = source.visit_counts[source.visit_counts['category'] == category]
+        plt.scatter(category_data['min'], category_data['max'], c=color, label=category, s=50, alpha=0.5)
+
+    plt.xlabel('1st Blood Donation')
+    plt.ylabel('Last Blood Donation')
+    plt.title('Blood Donors Retention Scatterplot')
+    plt.legend()
+    plt.grid(True)
+
+    buffer = io.BytesIO()
+    plt.savefig(buffer, format='png')
+    buffer.seek(0)
+    plt.close()
     return buffer
 
