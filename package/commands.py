@@ -49,7 +49,6 @@ async def stat(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         f"Number of hospitals collecting blood: {source.unique_hospital}\n"
         f"1 blood donation can save up to 3 lives"
     )
-
     await update.message.reply_text(message)
 
 async def setup(context: ContextTypes.DEFAULT_TYPE) -> None:
