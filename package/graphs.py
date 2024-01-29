@@ -68,7 +68,6 @@ async def graph2(bot=None, update=None, context=None):
     plt.savefig(buffer, format='png')
     buffer.seek(0)
     plt.close()
-
     return buffer
 
 async def graph3(bot=None, update=None, context=None):
@@ -131,11 +130,9 @@ async def graph5(bot=None, update=None, context=None):
 
     plt.figure(figsize=(10, 6))
     sns.scatterplot(x=source.b['location_mobile'], y=source.b['daily'], hue=source.b['hospital'], palette='viridis', legend='full')
-
     plt.xlabel('Number of blood donations via mobile')
     plt.ylabel('Number of blood donations')
     plt.title('Correlation between accessibility and number of blood donations')
-
     plt.legend(title='Hospital', bbox_to_anchor=(1.05, 1), loc='upper left')
 
     buffer = io.BytesIO()
@@ -188,12 +185,9 @@ async def graph8(bot=None, update=None, context=None):
     column_sums = source.e[['17-24', '25-29', '30-34', '35-39', '40-44', '45-49', '50-54', '55-59', '60-64', 'other']].sum()
 
     sns.set(style="whitegrid")
-
     plt.figure(figsize=(10, 6))
     sns.barplot(x=column_sums.values, y=column_sums.index, color='deepskyblue')
-
     plt.gca().xaxis.set_major_formatter(FuncFormatter(lambda x, _: '{:,.0f}'.format(x)))
-
     plt.title('Number of new blood donors based on age groups')
     plt.xlabel('Number of blood donations')
     plt.ylabel('Age group')
