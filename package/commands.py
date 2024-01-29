@@ -21,7 +21,7 @@ async def help(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         "The following commands are available :\n"
         "/stat - Blood Donations stats\n"
         "/list - List of graphs available\n"
-        "/graph <number> - Display graph e.g. graph 1 \n"
+        "/graph <number> - Display graph e.g. graph 1\n"
         "/set - Set timer to display graphs\n"
         "/unset - Unset timer of displayed graphs"
     )
