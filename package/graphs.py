@@ -28,11 +28,8 @@ async def graph1(bot=None, update=None, context=None):
     year = source.c.groupby(["year", "state"]).agg({'daily': 'sum'}).reset_index()
 
     fig, ax = plt.subplots(figsize=(10, 6))
-
     state_data = year[year['state'] == "Malaysia"]
-
     ax.plot(state_data['year'], state_data['daily'])
-
     ax.set_xticks(state_data['year'][::3])
     ax.set_title('Blood Donation Trend - Malaysia')
     ax.set_xlabel('Year')
