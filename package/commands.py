@@ -74,7 +74,6 @@ def remove_job_if_exists(name: str, context: ContextTypes.DEFAULT_TYPE) -> bool:
 
 async def set_timer(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     chat_id = update.effective_message.chat_id
-
     try:
         input_time_str = context.args[0]
         input_time = datetime.strptime(input_time_str, "%I:%M%p").time()
