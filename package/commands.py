@@ -21,7 +21,7 @@ async def help(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         "The following commands are available :\n"
         "/stat - Blood Donations stats\n"
         "/list - List of graphs available\n"
-        "/graph <number> - Display graph\n"
+        "/graph <number> - Display graph e.g. graph 1 \n"
         "/set - Set timer to display graphs\n"
         "/unset - Unset timer of displayed graphs"
     )
@@ -139,4 +139,4 @@ async def graph(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         await context.bot.send_photo(update.effective_chat.id, photo=buffer)
 
     else:
-        await update.message.reply_text("Usage: /graph <graph_number>")
+        await update.message.reply_text("Use /graph <number> e.g. graph 1")
