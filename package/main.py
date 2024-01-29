@@ -11,11 +11,9 @@ TOKEN: Final = keys.token
 BOT_USERNAME: Final = keys.bot
 chat = keys.chat_id
 
-
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO
 )
-
 
 def main() -> None:
     nest_asyncio.apply()
