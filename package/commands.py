@@ -37,7 +37,8 @@ async def glist(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         "5 - Correlation Between Accessibility And Number of Blood Donations\n"
         "6 - Number of Blood Donations Based On Social Groups\n"
         "7 - Number of Blood Donations Based On Blood Type\n"
-        "8 - Number Of Blood Donations Based On Age Groups"
+        "8 - Number Of Blood Donations Based On Age Groups\n"
+        "9 - Blood Donors Retention Scatterplot"
     )
     await update.message.reply_text(message)
 
@@ -128,6 +129,8 @@ async def graph(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         elif graph_number == '7':
             buffer = await graphs.graph7(bot=context.bot, update=update, context=context)
         elif graph_number == '8':
+            buffer = await graphs.graph8(bot=context.bot, update=update, context=context)
+        elif graph_number == '9':
             buffer = await graphs.graph8(bot=context.bot, update=update, context=context)
         else:
             await update.message.reply_text("Invalid graph number.")
