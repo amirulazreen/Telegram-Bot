@@ -222,11 +222,11 @@ async def graph9(bot=None, update=None, context=None):
     source.visit_counts['category'] = np.select(conditions, categories, default='regular donor')
 
     category_colors = {
-        'new donor': 'aqua',
-        'old active donor': 'darkgreen',
-        'irregular donor': 'orange',
-        'lapsed donor': 'midnightblue',
-        'regular donor': 'limegreen'
+        'new donor': '#00ff00',
+        'old active donor': '#89cff0',
+        'irregular donor': '#ff0000',
+        'lapsed donor': '#2e8b57',
+        'regular donor': '#0054a6'
     }
 
     plt.figure(figsize=(10, 6))
