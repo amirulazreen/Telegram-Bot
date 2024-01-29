@@ -131,7 +131,7 @@ async def graph(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         elif graph_number == '8':
             buffer = await graphs.graph8(bot=context.bot, update=update, context=context)
         elif graph_number == '9':
-            buffer = await graphs.graph8(bot=context.bot, update=update, context=context)
+            buffer = await graphs.graph9(bot=context.bot, update=update, context=context)
         else:
             await update.message.reply_text("Invalid graph number.")
             return
