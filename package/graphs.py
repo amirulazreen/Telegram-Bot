@@ -145,13 +145,13 @@ async def graph5(bot=None, update=None, context=None):
     return buffer
 
 async def graph6(bot=None, update=None, context=None):
-    c = source.c.rename(columns={
+    x = source.c.rename(columns={
         'social_civilian': 'Civilian',
         'social_student': 'Student',
         'social_policearmy': 'Uniformed Bodies'
     })
 
-    column_sums = c[['Civilian', 'Student', 'Uniformed Bodies']].sum()
+    column_sums = x[['Civilian', 'Student', 'Uniformed Bodies']].sum()
 
     sns.set(style="whitegrid")
     plt.figure(figsize=(10, 6))
