@@ -10,9 +10,10 @@ e = None
 unique_donor = None
 current_date = None
 unique_hospital = None
+visit_counts = None
 
 async def load_data():
-    global a, b, c, d, e, unique_donor, current_date, unique_hospital
+    global a, b, c, d, e, unique_donor, current_date, unique_hospital, visit_counts
     try:
         print("Loading...")
         data_g = "https://dub.sh/ds-data-granular"
@@ -30,6 +31,8 @@ async def load_data():
         unique_donor = a['donor_id'].nunique()
         current_date = a['visit_date'].max()
         unique_hospital = d['hospital'].nunique()
+        a['visit_date'] = pd.to_datetime(a['visit_date'])
+        visit_counts = a.groupby('donor_id')['visit_date'].agg(['count', 'min', 'max']).reset_index()
 
         print("Files reloaded at", datetime.now(pytz.timezone('Asia/Singapore')).strftime("%Y-%m-%d %H:%M:%S"))
     except Exception as f:
