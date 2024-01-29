@@ -100,7 +100,7 @@ async def set_timer(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         await update.effective_message.reply_text(text)
 
     except (IndexError, ValueError) as e:
-        await update.effective_message.reply_text("Usage: /set <HH:MMam/pm>")
+        await update.effective_message.reply_text("Use /set <HH:MMam/pm>")
 
 async def unset(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     chat_id = update.message.chat_id
