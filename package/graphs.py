@@ -31,7 +31,7 @@ async def graph1(bot=None, update=None, context=None):
     state_data = year[year['state'] == "Malaysia"]
     ax.plot(state_data['year'], state_data['daily'])
     ax.set_xticks(state_data['year'][::3])
-    ax.set_title('Blood Donation Trend - Malaysia')
+    ax.set_title('Blood Donations Trend - Malaysia')
     ax.set_xlabel('Year')
     ax.set_ylabel('Total Donations Per Year')
     ax.legend()
@@ -54,7 +54,7 @@ async def graph2(bot=None, update=None, context=None):
     plt.plot(grouped_df['year'], grouped_df['donations_regular'], label='Regular Donor', color='green', alpha=0.7)
     plt.plot(grouped_df['year'], grouped_df['donations_irregular'], label='Irregular Donor', color='orange', alpha=0.7)
 
-    plt.title('Blood Donor Retention Trends')
+    plt.title('Blood Donor Retentions Trends')
     plt.xlabel('Year')
     plt.ylabel('Total Number of Donors')
     plt.legend()
@@ -80,7 +80,7 @@ async def graph3(bot=None, update=None, context=None):
         state_data = year[year['state'] == state]
         ax.plot(state_data['year'], state_data['daily'], label=state, marker='o', linestyle='-', color=palette[i])
 
-    ax.set_title('Blood Donation Trend - States', fontsize=16)
+    ax.set_title('Blood Donations Trend - States', fontsize=16)
     ax.set_xlabel('Year', fontsize=14)
     ax.set_ylabel('Total Donations Per Year', fontsize=14)
     legend = ax.legend(loc='upper left', bbox_to_anchor=(0.98, 1), title='State', fontsize='x-small')
@@ -196,8 +196,6 @@ async def graph8(bot=None, update=None, context=None):
     return buffer
 
 async def graph9(bot=None, update=None, context=None):
-    await bot.send_message(chat_id=update.message.chat_id, text="Loading...")
-
     two_years_ago = pd.Timestamp.now() - pd.Timedelta(days=365 * 2)
     three_months_ago = pd.Timestamp.now() - pd.Timedelta(days=30 * 3)
 
