@@ -73,7 +73,7 @@ async def graph3(bot=None, update=None, context=None):
     year = source.c.groupby(["year", "state"]).agg({'daily': 'sum'}).reset_index()
     states_to_plot = year[year['state'] != "Malaysia"]['state'].unique()
 
-    fig, ax = plt.subplots(figsize=(12, 8))
+    fig, ax = plt.subplots(figsize=(14, 8))
     palette = sns.color_palette('rainbow', n_colors=len(states_to_plot))
 
     for i, state in enumerate(states_to_plot):
