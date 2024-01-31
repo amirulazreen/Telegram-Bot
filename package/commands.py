@@ -52,17 +52,29 @@ async def stat(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await update.message.reply_text(message)
 
 async def setup(context: ContextTypes.DEFAULT_TYPE) -> None:
-    await source.load_data()
+    await load_data()
     job = context.job
     bot = context.bot
 
-    buffer1 = await graphs.graph1(bot=bot)
-    buffer2 = await graphs.graph2(bot=bot)
-    buffer3 = await graphs.graph3(bot=bot)
+    buffer1 = await graph1(bot=bot)
+    buffer2 = await graph2(bot=bot)
+    buffer3 = await graph3(bot=bot)
+    buffer4 = await graph4(bot=bot)
+    buffer5 = await graph5(bot=bot)
+    buffer6 = await graph6(bot=bot)
+    buffer7 = await graph7(bot=bot)
+    buffer8 = await graph8(bot=bot)
+    buffer9 = await graph9(bot=bot)
 
     await bot.send_photo(job.chat_id, photo=buffer1)
     await bot.send_photo(job.chat_id, photo=buffer2)
     await bot.send_photo(job.chat_id, photo=buffer3)
+    await bot.send_photo(job.chat_id, photo=buffer4)
+    await bot.send_photo(job.chat_id, photo=buffer5)
+    await bot.send_photo(job.chat_id, photo=buffer6)
+    await bot.send_photo(job.chat_id, photo=buffer7)
+    await bot.send_photo(job.chat_id, photo=buffer8)
+    await bot.send_photo(job.chat_id, photo=buffer9)
 
 def remove_job_if_exists(name: str, context: ContextTypes.DEFAULT_TYPE) -> bool:
     current_jobs = context.job_queue.get_jobs_by_name(name)
