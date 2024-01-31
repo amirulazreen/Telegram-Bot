@@ -56,25 +56,13 @@ async def setup(context: ContextTypes.DEFAULT_TYPE) -> None:
     job = context.job
     bot = context.bot
 
-    buffer1 = await graph1(bot=bot)
-    buffer2 = await graph2(bot=bot)
-    buffer3 = await graph3(bot=bot)
-    buffer4 = await graph4(bot=bot)
-    buffer5 = await graph5(bot=bot)
-    buffer6 = await graph6(bot=bot)
-    buffer7 = await graph7(bot=bot)
-    buffer8 = await graph8(bot=bot)
-    buffer9 = await graph9(bot=bot)
+    graph_buffers = []
+    for i in range(1, 10):
+        buffer = await globals()[f'graph{i}'](bot=bot)
+        graph_buffers.append(buffer)
 
-    await bot.send_photo(job.chat_id, photo=buffer1)
-    await bot.send_photo(job.chat_id, photo=buffer2)
-    await bot.send_photo(job.chat_id, photo=buffer3)
-    await bot.send_photo(job.chat_id, photo=buffer4)
-    await bot.send_photo(job.chat_id, photo=buffer5)
-    await bot.send_photo(job.chat_id, photo=buffer6)
-    await bot.send_photo(job.chat_id, photo=buffer7)
-    await bot.send_photo(job.chat_id, photo=buffer8)
-    await bot.send_photo(job.chat_id, photo=buffer9)
+    for buffer in graph_buffers:
+        await bot.send_photo(job.chat_id, photo=buffer)
 
 def remove_job_if_exists(name: str, context: ContextTypes.DEFAULT_TYPE) -> bool:
     current_jobs = context.job_queue.get_jobs_by_name(name)
@@ -104,10 +92,7 @@ async def set_timer(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
         context.job_queue.run_repeating(setup, interval=interval_seconds, chat_id=chat_id, name=str(chat_id))
 
-        text = f"Following graphs will be displayed every day at {input_time.strftime('%I:%M%p')}\n" \
-              "Blood Donation Trend - Malaysia\n" \
-              "Blood Donors Retention\n" \
-              "Blood Donation Trend - States"
+        text = f"Graphs will be displayed every day" 
 
         await update.effective_message.reply_text(text)
 
